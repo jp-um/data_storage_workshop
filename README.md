@@ -72,7 +72,7 @@ docker run --name some-neo4j --env=NEO4J_AUTH=none -p=7474:7474 -p=7687:7687 -d 
 
 I have developed example usages of each NoSQL database, using Jupyter lab.  This
 is a browser-based IDE on Jupyter Notebooks.  First, you should copy **all** 
-code (as Jupyter notebooks) [here](https://github.com/jp-uom/ARI5902_Research_Topics_In_Artificial_Intelligence/tree/master/jupyter) 
+code (as Jupyter notebooks) [here](https://github.com/jp-uom/nosql_workshop/tree/master/jupyter) 
 in a local directory on your Ubuntu installation.  Remember to change the 
 `/your/local/path` path below.
 
@@ -110,7 +110,6 @@ and containers in the following way.
 ```
 docker rm -f $(docker ps -a -q)
 docker rmi -f $(docker images -a -q)
-
 ```
 
 <!--
@@ -118,16 +117,16 @@ docker rmi -f $(docker images -a -q)
 docker pull jpebe/nosql
 ```
 -->
-
-
 <!--
 ```
 docker run -ti --rm --name nosql-workshop -v /home/jp/cloud/google-drive-uom/lecturing/2017-2018/ICS5114_Big_Data_Processing/class_practicals/nosql/docker/jupyter:/notebooks --link some-memcache:memcache --link some-mongo:mongo --link some-cassandra:cassandra --link some-neo4j:neo4j -p=8888:8888 jpebe/nosql-workshop
 ```
 -->
 
-**Pull requests (with fixes) will be recieved with thanks (even to this guide).**
+**Pull requests (with fixes, even to this guide) will be recieved with appreciation and thanks.**
 
-I hope you enjoy the session!
+I hope you enjoy this session!
 
+
+Dr Jean-Paul Ebejer
 ![](https://github.com/drmenguin/learnd/blob/master/jp.gif)
