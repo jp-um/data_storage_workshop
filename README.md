@@ -136,6 +136,6 @@ docker run -ti --rm --name nosql-workshop -v /home/jp/cloud/google-drive-uom/lec
 I hope you enjoy this session!
 
 Dr Jean-Paul Ebejer
-
 <br />
+
 ![](https://github.com/drmenguin/learnd/blob/master/jp.gif)
