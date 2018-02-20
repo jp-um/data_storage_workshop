@@ -68,6 +68,9 @@ To run neo4j execute:
 docker run --name some-neo4j --env=NEO4J_AUTH=none -p=7474:7474 -p=7687:7687 -d neo4j
 ```
 
+Note that the above switches off Neo4J authetication (by setting an environment
+variable in the container).
+
 ## Jupyter Lab 
 
 I have developed example usages of each NoSQL database, using Jupyter lab.  This
@@ -87,7 +90,10 @@ docker run -ti --rm \
     -p=8888:8888 \
     jpebe/nosql-workshop
 ```
-You should then be able to copy the Jupyter notebook URL from the terminal into your browser (ctrl-click will open a browser automatically).
+This container is linked to all the containers we set up (and are running).
+
+You should then be able to copy the Jupyter notebook URL from the terminal into 
+your browser (ctrl-click will open a browser automatically).
 
     
 ## Important Limitation
@@ -127,6 +133,6 @@ docker run -ti --rm --name nosql-workshop -v /home/jp/cloud/google-drive-uom/lec
 
 I hope you enjoy this session!
 
-
 Dr Jean-Paul Ebejer
+<br />
 ![](https://github.com/drmenguin/learnd/blob/master/jp.gif)
