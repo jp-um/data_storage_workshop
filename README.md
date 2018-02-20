@@ -96,17 +96,16 @@ You should then be able to copy the Jupyter notebook URL from the terminal into
 your browser (ctrl-click will open a browser automatically).
 
     
-## Important Limitation
+## Limitations
 
-The databases we run within the container have no volume mounted.  This means that
-all data created during our exercises is stored in the container which gets reset
-when you reinitialize the container.  If you want your data to persist, you
-have to mount volumes (on your Ubuntu installation) and use these as the data dir
-of the NoSQL engine.
+The databases we run within the containers have no volume mounted (from Ubuntu).  
+This means that all data created during our exercises is stored in the container 
+which gets lost when you stop running the container.  If you want your data to 
+persist, you have to mount volumes (on your Ubuntu installation) and use these 
+as the data directory of the NoSQL engine.
 
 Changes to the jupyter notebooks will, however, be persisted as these are mounted
 from your own local directory.
-
 
 ## When you are done
 
@@ -129,10 +128,14 @@ docker run -ti --rm --name nosql-workshop -v /home/jp/cloud/google-drive-uom/lec
 ```
 -->
 
+
+## Conclusion
+
 **Pull requests (with fixes, even to this guide) will be recieved with appreciation and thanks.**
 
 I hope you enjoy this session!
 
 Dr Jean-Paul Ebejer
+
 <br />
 ![](https://github.com/drmenguin/learnd/blob/master/jp.gif)
