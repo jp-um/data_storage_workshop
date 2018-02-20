@@ -1,4 +1,4 @@
-# ICS5114 Big Data Processing -- NoSQL Databases Workshop
+# ICS5114 Big Data Processing &ndash; NoSQL Databases Workshop &ndash; Dr Jean-Paul Ebejer
 
 During this workshop I will show you the basic concepts of NoSQL systems.  We 
 will use four NoSQL technologies, each representing a different data model 
