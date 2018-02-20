@@ -73,22 +73,45 @@ docker run --name some-neo4j --env=NEO4J_AUTH=none -p=7474:7474 -p=7687:7687 -d 
 I have developed example usages of each NoSQL database, using Jupyter lab.  This
 is a browser-based IDE on Jupyter Notebooks.  First, you should copy **all** 
 code (as Jupyter notebooks) [here](https://github.com/jp-uom/ARI5902_Research_Topics_In_Artificial_Intelligence/tree/master/jupyter) 
-in a local directory on your Ubuntu installation.
+in a local directory on your Ubuntu installation.  Remember to change the 
+`/your/local/path` path below.
 
 ```
-docker run -ti --rm --name nosql-workshop -v /home/jp/cloud/google-drive-uom/lecturing/2017-2018/ICS5114_Big_Data_Processing/class_practicals/nosql/docker/jupyter:/notebooks --link some-memcache:memcache --link some-mongo:mongo --link some-cassandra:cassandra --link some-neo4j:neo4j -p=8888:8888 jpebe/nosql-workshop
+docker run -ti --rm \
+    --name nosql-workshop \
+    --link some-memcache:memcache \
+    --link some-mongo:mongo \
+    --link some-cassandra:cassandra \
+    --link some-neo4j:neo4j \
+    -v /your/local/path:/notebooks \
+    -p=8888:8888 \
+    jpebe/nosql-workshop
 ```
 You should then be able to copy the Jupyter notebook URL from the terminal into your browser (ctrl-click will open a browser automatically).
 
+    
+## Important Limitation
 
-# Important Limitations
-
-The databases we run with the container have no volume mounted.  This means that
-all data created during our exercises are stored in the container which gets reset
+The databases we run within the container have no volume mounted.  This means that
+all data created during our exercises is stored in the container which gets reset
 when you reinitialize the container.  If you want your data to persist, you
 have to mount volumes (on your Ubuntu installation) and use these as the data dir
-of the NoSQL engine. 
+of the NoSQL engine.
 
+Changes to the jupyter notebooks will, however, be persisted as these are mounted
+from your own local directory.
+
+
+## When you are done
+
+You may want to reclaim some space on your Ubuntu installation.  Remove all images 
+and containers in the following way.
+
+```
+docker rm -f $(docker ps -a -q)
+docker rmi -f $(docker images -a -q)
+
+```
 
 <!--
 ```
@@ -103,7 +126,7 @@ docker run -ti --rm --name nosql-workshop -v /home/jp/cloud/google-drive-uom/lec
 ```
 -->
 
-** Pull requests (with fixes) will be recieved with thanks. **
+**Pull requests (with fixes) will be recieved with thanks (even to this guide).**
 
 I hope you enjoy the session!
 
