@@ -74,7 +74,7 @@ variable in the container).
 ## Jupyter Lab 
 
 I have developed example usages of each NoSQL database, using Jupyter lab.  This
-is a browser-based IDE on Jupyter Notebooks.  First, you should copy **all** 
+is a browser-based IDE which uses Jupyter Notebooks.  First, you should copy **all** 
 code (as Jupyter notebooks) [here](https://github.com/jp-uom/nosql_workshop/tree/master/jupyter) 
 in a local directory on your Ubuntu installation.  Remember to change the 
 `/your/local/path` path below.
