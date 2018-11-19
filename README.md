@@ -39,7 +39,7 @@ may take a few minutes.  All the names of the containers will be prefixed with
 To run memcached execute:
 
 ```
-docker run --init --name some-memcache -d memcached
+docker run --init --name some-memcache -p=21211:11211 -d memcached
 ```
 
 `-d` detaches the docker container once initialized.
