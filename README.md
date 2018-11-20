@@ -20,7 +20,7 @@ and placed in different docker containers (you're spoilt these days!).
 The rest of the workshop (and practical) assumes you have docker installed.
 This can be achieved readily (on Ubuntu 16.04.5 LTS) with:
 
-```
+```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt-get update
@@ -43,7 +43,7 @@ part of the workshop.
 
 This is eaily achieved as follows:
 
-```
+```bash
 # Get the latest (official) image for mysql
 docker pull mysql/mysql-server:latest
 # List all images available locally (you should see mysql)
