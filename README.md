@@ -36,7 +36,7 @@ effectively re-logs you).
 
 The Ubuntu instructions to install docker where taken from [the docker site](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository).
 
-# NoSQL Databases
+# SQL (Relational) Databases
 
 We will use the official latest mysql containers for the relational databases
 part of the workshop.
