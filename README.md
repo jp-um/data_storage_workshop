@@ -143,15 +143,13 @@ your browser (ctrl-click will open a browser automatically).
     
 ### Limitations
 
-The databases we run within the containers have no volume mounted (from Ubuntu).  
-This means that all data created during our exercises is stored in the container 
+The databases we run within the containers have no volume mounted (from Ubuntu).  This means that all data created during our exercises is stored in the container 
 which gets lost when you stop running the container.  If you want your data to 
 persist, you have to mount volumes (on your Ubuntu installation) and use these 
 as the data directory of the NoSQL engine.  For example, to keep a copy of
 the neo4j data, simply run the docker container in the following manner:
 
 ```bash
-docker run --name some-neo4j --env=NEO4J_AUTH=none -p=7474:7474 -p=7687:7687 -d neo4j
 docker run --name some-neo4j \
     --env=NEO4J_AUTH=none
     --publish=7474:7474 --publish=7687:7687 \
