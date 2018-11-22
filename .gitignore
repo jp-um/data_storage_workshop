@@ -1,3 +1,5 @@
-jupyter/.ipynb_checkpoints
+.ipynb_checkpoints
 # git ignore instruction files
 *txt
+# ignore local scripts
+run_all.sh
