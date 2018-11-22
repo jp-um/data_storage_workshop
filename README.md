@@ -119,9 +119,11 @@ variable in the container).
 
 I have developed example usages of each NoSQL database, using Jupyter lab.  This
 is a browser-based IDE which uses Jupyter Notebooks.  First, you should copy **all** 
-code (as Jupyter notebooks) [here](https://github.com/jp-uom/nosql_workshop/tree/master/jupyter) 
-in a local directory on your Ubuntu installation.  Remember to change the 
-`/your/local/path` path below.
+code (as Jupyter notebooks) from the [sql](https://github.com/jp-um/data_storage_workshop/tree/master/sql) 
+and [nosql](https://github.com/jp-um/data_storage_workshop/tree/master/nosql) directories
+in a local directory on your Ubuntu installation (alternatively it is easier to 
+```git clone``` this repository).  Remember to change the `/your/local/path` 
+path below.
 
 ```bash
 docker run -ti --rm \
