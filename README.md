@@ -20,7 +20,7 @@ and placed in different docker containers (you're spoilt these days!).
 The rest of the workshop (and practical) assumes you have docker installed.
 This can be achieved readily (on Ubuntu 16.04.5 LTS) with:
 
-```
+```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt-get update
@@ -36,14 +36,14 @@ effectively re-logs you).
 
 The Ubuntu instructions to install docker where taken from [the docker site](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository).
 
-# NoSQL Databases
+# SQL (Relational) Databases
 
 We will use the official latest mysql containers for the relational databases
 part of the workshop.
 
-This is eaily achieved as follows:
+This is easily achieved as follows:
 
-```
+```bash
 # Get the latest (official) image for mysql
 docker pull mysql/mysql-server:latest
 # List all images available locally (you should see mysql)
@@ -82,7 +82,7 @@ may take a few minutes.  All the names of the containers will be prefixed with
 
 To run memcached execute:
 
-```
+```bash
 docker run --init --name some-memcache -p=21211:11211 -d memcached
 ```
 
@@ -92,7 +92,7 @@ docker run --init --name some-memcache -p=21211:11211 -d memcached
 
 To run mongodb execute:
 
-```
+```bash
 docker run --name some-mongo -d mongo
 ```
 
@@ -100,7 +100,7 @@ docker run --name some-mongo -d mongo
 
 To run cassandra execute:
 
-```
+```bash
 docker run --name some-cassandra -d cassandra
 ```
 
@@ -108,11 +108,11 @@ docker run --name some-cassandra -d cassandra
 
 To run neo4j execute:
 
-```
+```bash
 docker run --name some-neo4j --env=NEO4J_AUTH=none -p=7474:7474 -p=7687:7687 -d neo4j
 ```
 
-Note that the above switches off Neo4J authetication (by setting an environment
+Note that the above switches off Neo4J authentication (by setting an environment
 variable in the container).
 
 # Jupyter Lab 
@@ -123,7 +123,7 @@ code (as Jupyter notebooks) [here](https://github.com/jp-uom/nosql_workshop/tree
 in a local directory on your Ubuntu installation.  Remember to change the 
 `/your/local/path` path below.
 
-```
+```bash
 docker run -ti --rm \
     --name data-storage-workshop \
     --link some-mysql:mysql \
@@ -157,7 +157,7 @@ from your own local directory.
 You may want to reclaim some space on your Ubuntu installation.  Remove all images 
 and containers in the following way.
 
-```
+```bash
 docker rm -f $(docker ps -a -q)
 docker rmi -f $(docker images -a -q)
 ```
