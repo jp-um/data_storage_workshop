@@ -147,10 +147,24 @@ The databases we run within the containers have no volume mounted (from Ubuntu).
 This means that all data created during our exercises is stored in the container 
 which gets lost when you stop running the container.  If you want your data to 
 persist, you have to mount volumes (on your Ubuntu installation) and use these 
-as the data directory of the NoSQL engine.
+as the data directory of the NoSQL engine.  For example, to keep a copy of
+the neo4j data, simply run the docker container in the following manner:
 
-Changes to the jupyter notebooks will, however, be persisted as these are mounted
-from your own local directory.
+```bash
+docker run --name some-neo4j --env=NEO4J_AUTH=none -p=7474:7474 -p=7687:7687 -d neo4j
+docker run --name some-neo4j \
+    --env=NEO4J_AUTH=none
+    --publish=7474:7474 --publish=7687:7687 \
+    --volume=$HOME/neo4j/data:/data \
+    --volume=$HOME/neo4j/logs:/logs \
+    -d neo4j
+```
+
+Where ```$HOME/neo4j/data``` and ```$HOME/neo4j/logs``` will be mounted in the
+container under ```/data``` and ```/logs``` respectively.
+
+Note that in the above workshop, changes to the jupyter notebooks will, however, 
+be persisted as these are mounted from your own local directory.
 
 ### When you are done
 
@@ -167,12 +181,6 @@ docker rmi -f $(docker images -a -q)
 docker pull jpebe/nosql
 ```
 -->
-<!--
-```
-docker run -ti --rm --name nosql-workshop -v /home/jp/cloud/google-drive-uom/lecturing/2017-2018/ICS5114_Big_Data_Processing/class_practicals/nosql/docker/jupyter:/notebooks --link some-memcache:memcache --link some-mongo:mongo --link some-cassandra:cassandra --link some-neo4j:neo4j -p=8888:8888 jpebe/nosql-workshop
-```
--->
-
 
 ### Conclusion
 
