@@ -123,7 +123,7 @@ code (as Jupyter notebooks) from the [sql](https://github.com/jp-um/data_storage
 and [nosql](https://github.com/jp-um/data_storage_workshop/tree/master/nosql) directories
 in a local directory on your Ubuntu installation (alternatively it is easier to 
 ```git clone``` this repository).  Remember to change the `/your/local/path` 
-path below.
+path below.  The last line -- ```jpebe/data_storage_workshop``` -- identifies [the image](https://hub.docker.com/r/jpebe/data_storage_workshop/), stored on docker hub, which we will be using.  Do **not** change this.
 
 ```bash
 docker run -ti --rm \
