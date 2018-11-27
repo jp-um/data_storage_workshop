@@ -155,8 +155,8 @@ the neo4j data, simply run the docker container in the following manner:
 docker run --name some-neo4j \
     --env NEO4J_AUTH=none
     -p 7474:7474 -p 7687:7687 \
-    --volume $HOME/neo4j/data:/data \
-    --volume $HOME/neo4j/logs:/logs \
+    -v $HOME/neo4j/data:/data \
+    -v $HOME/neo4j/logs:/logs \
     -d neo4j
 ```
 
