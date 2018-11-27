@@ -30,8 +30,8 @@ sudo usermod -aG docker ${USER}
 ```
 
 After adding the docker group to your user, you will need to log out and in 
-again to show the new group (check with the ```id``` Bash command).  An 
-alternative to logging in and out again is to use ```su - $USER``` (this 
+again to show the new group (check with the `id` Bash command).  An 
+alternative to logging in and out again is to use `su - $USER` (this 
 effectively re-logs you).
 
 The Ubuntu instructions to install docker where taken from [the docker site](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository).
@@ -50,7 +50,7 @@ docker pull mysql/mysql-server:latest
 docker images
 # Start a container from the mysql/mysql-server:latest image
 # You need to give this some time (takes longish to start)
-docker run --name=some-mysql -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=my-secret-pwd -d mysql/mysql-server:latest
+docker run --name some-mysql -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=my-secret-pwd -d mysql/mysql-server:latest
 # this will tell you what is going on with your instance
 docker logs some-mysql
 # what are the docker containers running, you should see mysql
@@ -76,14 +76,14 @@ will use four NoSQL technologies, each representing a different data model
 We will use (the latest) official docker instances to install the NoSQL database
 engines.  Follow the instructions presented in each section.  Each of these steps
 may take a few minutes.  All the names of the containers will be prefixed with
-`some-`.
+`some-` (this is an arbitrary decision).
 
 ### Memcached
 
 To run memcached execute:
 
 ```bash
-docker run --init --name some-memcache -p=21211:11211 -d memcached
+docker run --init --name some-memcache -p 21211:11211 -d memcached
 ```
 
 `-d` detaches the docker container once initialized.
@@ -109,7 +109,7 @@ docker run --name some-cassandra -d cassandra
 To run neo4j execute:
 
 ```bash
-docker run --name some-neo4j --env=NEO4J_AUTH=none -p=7474:7474 -p=7687:7687 -d neo4j
+docker run --name some-neo4j --env NEO4J_AUTH=none -p 7474:7474 -p 7687:7687 -d neo4j
 ```
 
 Note that the above switches off Neo4J authentication (by setting an environment
@@ -134,7 +134,7 @@ docker run -ti --rm \
     --link some-cassandra:cassandra \
     --link some-neo4j:neo4j \
     -v /your/local/path:/notebooks \
-    -p=8888:8888 \
+    -p 8888:8888 \
     jpebe/data_storage_workshop
 ```
 This container is linked to all the containers we set up (and are running).
@@ -153,10 +153,10 @@ the neo4j data, simply run the docker container in the following manner:
 
 ```bash
 docker run --name some-neo4j \
-    --env=NEO4J_AUTH=none
-    --publish=7474:7474 --publish=7687:7687 \
-    --volume=$HOME/neo4j/data:/data \
-    --volume=$HOME/neo4j/logs:/logs \
+    --env NEO4J_AUTH=none
+    -p 7474:7474 -p 7687:7687 \
+    --volume $HOME/neo4j/data:/data \
+    --volume $HOME/neo4j/logs:/logs \
     -d neo4j
 ```
 
