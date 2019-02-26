@@ -174,8 +174,8 @@ Explore and run the NoSQL and SQL notebooks, and understand each command does.
     
 ## Limitations
 
-The databases we run within the containers have no volume mounted (from Ubuntu).  
-This means that all data created during our exercises is stored in the container 
+The databases we run within the containers have no volume mounted (from Ubuntu).  This 
+means that all data created during our exercises is stored in the container 
 which gets lost when you stop running the container.  If you want your data to 
 persist, you have to mount volumes (on your Ubuntu installation) and use these 
 as the data directory of the NoSQL engine.  For example, to keep a copy of
