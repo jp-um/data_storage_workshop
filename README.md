@@ -2,11 +2,11 @@
 
 In this workshop (typically for Data Science and Big-Data sessions) we are going
 to look at storing data in database systems, as opposed to storing them in text 
-files (```.csv```).
+files (e.g. ```.csv```).  
 
 # Requirements
 
-The following assumes you have a base Linux (Ubuntu 16.04.5 LTS) installation.
+The following assumes you have a base Linux (Ubuntu 18.04.2 LTS) installation.
 Other more recent versions may work too (let me know otherwise).  If you are a 
 windows fan, may I suggest you create a beefy VM (using VirtualBox or on 
 the cloud) and install Ubuntu there.
@@ -18,15 +18,24 @@ will be using docker so everything is conveniently installed and set-up for you
 and placed in different docker containers (you're spoilt these days!).
 
 The rest of the workshop (and practical) assumes you have docker installed.
-This can be achieved readily (on Ubuntu 16.04.5 LTS) with:
+This can be achieved readily (on Ubuntu 18.04.2 LTS) with:
 
 ```bash
+# Install dependencies
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+# Add repository key
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# Add repository for docker packages
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt-get update
-sudo apt-get install -y docker-ce
+# Install new packages
+sudo apt-get install -y sudo apt-get install docker-ce docker-ce-cli containerd.io
+# Check docker service is running
 sudo systemctl status docker
+# Add docker role to your currrent user (to avoid sudo each time)
 sudo usermod -aG docker ${USER}
+# Check all of the installed software works with:
+sudo docker run hello-world
 ```
 
 After adding the docker group to your user, you will need to log out and in 
@@ -34,7 +43,10 @@ again to show the new group (check with the `id` Bash command).  An
 alternative to logging in and out again is to use `su - $USER` (this 
 effectively re-logs you).
 
-The Ubuntu instructions to install docker where taken from [the docker site](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository).
+The Ubuntu instructions to install docker where taken from [the docker site](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
+
+Clone this repository using ```git clone git@github.com:jp-um/data_storage_workshop.git```.  
+You should then run this workshop from the root directory of the repository.
 
 # SQL (Relational) Databases
 
@@ -51,17 +63,27 @@ docker images
 # Start a container from the mysql/mysql-server:latest image
 # You need to give this some time (takes longish to start)
 docker run --name some-mysql -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=my-secret-pwd -d mysql/mysql-server:latest
-# this will tell you what is going on with your instance
+# This will tell you what is going on with your instance
 docker logs some-mysql
-# what are the docker containers running, you should see mysql
+# What are the docker containers running, you should see mysql
 docker ps
-# from the sql directory, import the structure of the database (and some 
+# From the sql directory, import the structure of the database (and some 
 # data) from the insurance.sql script file.
-docker exec -i some-mysql mysql -h0.0.0.0 -uroot -pmy-secret-pwd < insurance.sql
-# use this if you want to run the client directly in the docker container
+docker exec -i some-mysql mysql -h0.0.0.0 -uroot -pmy-secret-pwd < sql/insurance.sql
+# Use this if you want to run the client directly in the docker container
 docker exec -it some-mysql mysql -h0.0.0.0 -uroot -pmy-secret-pwd
+# Once in the mysql terminal, list all databases
+show databases;
+# Use our newly created db
+use insurance;
+# See the tables
+show tables;
+# See some data
+select * from driver;
+# To quit the mysql terminal
+\q
 ```
-Skip to the Jupyter Lab section, if you are only interested in running the mysql
+Skip to the [Jupyter Lab section](#jupyter-lab), if you are only interested in running the mysql
 exercise.
 
 # NoSQL Databases
@@ -115,6 +137,9 @@ docker run --name some-neo4j --env NEO4J_AUTH=none -p 7474:7474 -p 7687:7687 -d 
 Note that the above switches off Neo4J authentication (by setting an environment
 variable in the container).
 
+You should be able to see all running containers with ```docker ps```.  Look at 
+the status column of the resulting output.
+
 # Jupyter Lab 
 
 I have developed example usages of each NoSQL database, using Jupyter lab.  This
@@ -122,8 +147,10 @@ is a browser-based IDE which uses Jupyter Notebooks.  First, you should copy **a
 code (as Jupyter notebooks) from the [sql](https://github.com/jp-um/data_storage_workshop/tree/master/sql) 
 and [nosql](https://github.com/jp-um/data_storage_workshop/tree/master/nosql) directories
 in a local directory on your Ubuntu installation (alternatively it is easier to 
-```git clone``` this repository).  Remember to change the `/your/local/path` 
-path below.  The last line -- ```jpebe/data_storage_workshop``` -- identifies [the image](https://hub.docker.com/r/jpebe/data_storage_workshop/), stored on docker hub, which we will be using.  Do **not** change this.
+```git clone``` this repository as suggested above).  Remember to change the 
+`/your/local/path` path below.  The last line -- 
+```jpebe/data_storage_workshop``` -- identifies [the image](https://hub.docker.com/r/jpebe/data_storage_workshop/), 
+stored on docker hub, which we will be using.  Do **not** change this.
 
 ```bash
 docker run -ti --rm \
@@ -140,12 +167,15 @@ docker run -ti --rm \
 This container is linked to all the containers we set up (and are running).
 
 You should then be able to copy the Jupyter notebook URL from the terminal into 
-your browser (ctrl-click will open a browser automatically).
+your browser (ctrl-click will open a browser automatically).  Note that you may
+need to change the hostname to ```127.0.0.1``` (the local host).
 
+Explore and run the NoSQL and SQL notebooks, and understand each command does.
     
-### Limitations
+## Limitations
 
-The databases we run within the containers have no volume mounted (from Ubuntu).  This means that all data created during our exercises is stored in the container 
+The databases we run within the containers have no volume mounted (from Ubuntu).  
+This means that all data created during our exercises is stored in the container 
 which gets lost when you stop running the container.  If you want your data to 
 persist, you have to mount volumes (on your Ubuntu installation) and use these 
 as the data directory of the NoSQL engine.  For example, to keep a copy of
@@ -153,7 +183,7 @@ the neo4j data, simply run the docker container in the following manner:
 
 ```bash
 docker run --name some-neo4j \
-    --env NEO4J_AUTH=none
+    --env NEO4J_AUTH=none \
     -p 7474:7474 -p 7687:7687 \
     -v $HOME/neo4j/data:/data \
     -v $HOME/neo4j/logs:/logs \
@@ -166,7 +196,7 @@ container under ```/data``` and ```/logs``` respectively.
 Note that in the above workshop, changes to the jupyter notebooks will, however, 
 be persisted as these are mounted from your own local directory.
 
-### When you are done
+# When you are done
 
 You may want to reclaim some space on your Ubuntu installation.  Remove all images 
 and containers in the following way.
@@ -176,15 +206,10 @@ docker rm -f $(docker ps -a -q)
 docker rmi -f $(docker images -a -q)
 ```
 
-<!--
-```
-docker pull jpebe/nosql
-```
--->
+# Conclusion
 
-### Conclusion
-
-**Pull requests (with fixes, even to this guide) will be recieved with appreciation and thanks.**
+**Pull requests (with fixes, even to this guide) will be recieved with 
+appreciation and thanks.**
 
 I hope you enjoy this session!
 
