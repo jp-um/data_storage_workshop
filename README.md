@@ -45,7 +45,7 @@ effectively re-logs you).
 
 The Ubuntu instructions to install docker where taken from [the docker site](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
 
-Clone this repository using ```git clone git@github.com:jp-um/data_storage_workshop.git```.  You 
+Clone this repository using ```git clone git@github.com:jp-um/data_storage_workshop.git```.  (If you do not have your ssh keys and/or account set up in github you can simply ```git clone git://github.com/jp-um/data_storage_workshop.git```).  You 
 should then run this workshop from the root directory of the repository.
 
 # SQL (Relational) Databases
