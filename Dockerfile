@@ -2,8 +2,8 @@ FROM continuumio/miniconda3
 
 # meta information on the container
 LABEL maintainer="JP <jean.p.ebejer@um.edu.mt>" \
-      version="2.0 (2018/9)" \
-      copyright="(C)2017-2019" \
+      version="2.0 (2018/20)" \
+      copyright="(C)2017-2020" \
       description="Container to run JP's Data Storage Workshop"
 
 # Add Tini
@@ -12,14 +12,15 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 ENTRYPOINT ["/tini", "-s", "--"]
 
-# install and activate python 3.5 -- this is a requirement below
-RUN conda create -n py35 python=3.5 # 3.6 does not work at this point in time.
-ENV PATH /opt/conda/envs/py35/bin:$PATH
+# install and activate python 3.6 -- this is a requirement below
+RUN conda create -n py36 python=3.6
+ENV PATH /opt/conda/envs/py36/bin:$PATH
 
+RUN conda upgrade -y -n base conda 
 # add conda-forge
 RUN conda config --add channels conda-forge
 # required dependencies
-RUN conda install --name py35 -y pandas jupyter scikit-learn graphviz python-graphviz matplotlib python-memcached pymongo cassandra-driver neo4j-python-driver mysql-connector-python jupyterlab
+RUN conda install --name py36 -y pandas jupyter scikit-learn graphviz python-graphviz matplotlib python-memcached pymongo cassandra-driver neo4j-python-driver mysql-connector-python jupyterlab
 
 # note that we do not need to install any nosql system as we just use already
 # made docker containers for the functionality.  Point out to the students that

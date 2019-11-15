@@ -9,9 +9,9 @@ create database insurance;
 -- create user which uses this databases
 DROP USER IF EXISTS 'myuser'@'localhost';
 DROP USER IF EXISTS 'myuser'@'%';
-CREATE USER 'myuser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'FinoAllaFine!';
+CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'FinoAllaFine!';
 GRANT ALL PRIVILEGES ON insurance.* TO 'myuser'@'localhost';
-CREATE USER 'myuser'@'%' IDENTIFIED WITH mysql_native_password BY 'FinoAllaFine!';
+CREATE USER 'myuser'@'%' IDENTIFIED BY 'FinoAllaFine!';
 GRANT ALL PRIVILEGES ON insurance.* TO 'myuser'@'%';
 
 create table insurance.driver(
