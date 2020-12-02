@@ -130,7 +130,7 @@ docker run --name some-cassandra -d cassandra
 To run neo4j execute:
 
 ```bash
-docker run --name some-neo4j --env NEO4J_AUTH=none -p 7474:7474 -p 7687:7687 -d neo4j
+docker run --name some-neo4j -e NEO4J_AUTH=neo4j/test -p 7474:7474 -p 7687:7687 -d neo4j
 ```
 
 Note that the above switches off Neo4J authentication (by setting an environment
@@ -182,7 +182,7 @@ the neo4j data, simply run the docker container in the following manner:
 
 ```bash
 docker run --name some-neo4j \
-    --env NEO4J_AUTH=none \
+    -e NEO4J_AUTH=neo4j/test \
     -p 7474:7474 -p 7687:7687 \
     -v $HOME/neo4j/data:/data \
     -v $HOME/neo4j/logs:/logs \
@@ -194,6 +194,14 @@ container under ```/data``` and ```/logs``` respectively.
 
 Note that in the above workshop, changes to the jupyter notebooks will, however, 
 be persisted as these are mounted from your own local directory.
+
+# How to build
+
+To build this image from the dockerfile, all you need is (from the dockerfile directory)
+
+```bash
+docker build -t jpebe/data_storage_workshop .
+```
 
 # When you are done
 
