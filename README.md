@@ -6,7 +6,7 @@ files (e.g. ```.csv```).
 
 # Requirements
 
-The following assumes you have a base Linux (Ubuntu 18.04.2 LTS) installation.
+The following assumes you have a base Linux (Ubuntu 20.04 LTS) installation.
 Other more recent versions may work too (let me know otherwise).  If you are a 
 windows fan, may I suggest you create a beefy VM (using VirtualBox or on 
 the cloud) and install Ubuntu there.
@@ -18,7 +18,7 @@ will be using docker so everything is conveniently installed and set-up for you
 and placed in different docker containers (you're spoilt these days!).
 
 The rest of the workshop (and practical) assumes you have docker installed.
-This can be achieved readily (on Ubuntu 18.04.2 LTS) with:
+This can be achieved readily (on Ubuntu 20.04 LTS) with:
 
 ```bash
 # Install dependencies
@@ -43,9 +43,9 @@ again to show the new group (check with the `id` Bash command).  An
 alternative to logging in and out again is to use `su - $USER` (this 
 effectively re-logs you).
 
-The Ubuntu instructions to install docker where taken from [the docker site](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
+The Ubuntu instructions to install docker where taken from [the docker site](https://docs.docker.com/install/linux/docker-ce/ubuntu/).  
 
-Clone this repository using ```git clone git@github.com:jp-um/data_storage_workshop.git```.  (If you do not have your ssh keys and/or account set up in github you can simply ```git clone git://github.com/jp-um/data_storage_workshop.git``` instead).  You should then run this workshop from the root directory of the repository.
+Clone this repository using ```git clone git@github.com:jp-um/data_storage_workshop.git```.  (If you do not have your ssh keys and/or account set up in github you can simply ```git clone git://github.com/jp-um/data_storage_workshop.git``` instead).  You should then run this workshop from the root directory of the repository.  To install git on Ubuntu, simply ```sudo apt-get install git```.
 
 # SQL (Relational) Databases
 
