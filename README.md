@@ -152,14 +152,14 @@ in a local directory on your Ubuntu installation (alternatively it is easier to
 stored on docker hub, which we will be using.  Do **not** change this.
 
 ```bash
-docker run -ti --rm \
+docker run --init -ti --rm \
     --name data-storage-workshop \
     --link some-mysql:mysql \
     --link some-memcache:memcache \
     --link some-mongo:mongo \
     --link some-cassandra:cassandra \
     --link some-neo4j:neo4j \
-    -v /your/local/path:/notebooks \
+    -v /REPLACE/WITH/YOUR/LOCAL/PATH:/notebooks \
     -p 8888:8888 \
     jpebe/data_storage_workshop
 ```
