@@ -115,8 +115,10 @@ docker run --init --name some-memcache -p 21211:11211 -d memcached
 To run mongodb execute:
 
 ```bash
-docker run --name some-mongo -d mongo
+docker run --name some-mongo -d mongo:4.4.6
 ```
+
+Note that the version at the end (i.e. 4.4.6) is important, as the latest (5+) mongo image requires the CPU to have AVX support which may not be available if running via some virtualization software (e.g. Windows host with an Ubuntu Guest using VirtualBox).
 
 ### Cassandra
 
