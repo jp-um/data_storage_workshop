@@ -133,7 +133,7 @@ docker run --name some-cassandra -d cassandra
 To run neo4j execute:
 
 ```bash
-docker run --name some-neo4j -e NEO4J_AUTH=neo4j/test -p 7474:7474 -p 7687:7687 -d neo4j
+docker run --name some-neo4j -e NEO4J_AUTH=neo4j/testtest -p 7474:7474 -p 7687:7687 -d neo4j
 ```
 
 Note that the above switches off Neo4J authentication (by setting an environment
