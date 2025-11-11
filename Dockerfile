@@ -1,31 +1,32 @@
-FROM continuumio/miniconda3
+FROM jupyter/scipy-notebook:latest
 
 # meta information on the container
 LABEL maintainer="JP <jean.p.ebejer@um.edu.mt>" \
-      version="3.0 (2017/23)" \
-      copyright="(C)2017-2023" \
+      version="4.0" \
+      copyright="(C)2017-2026" \
       description="Container to run JP's Data Storage Workshop"
 
-# No need for Tini any more as it is now included in Docker (CE) itself.
+# Start from the scipy-notebook image
+# This base image already includes:
+# - jupyterlab
+# - pandas
+# - scikit-learn
+# - matplotlib
 
-# install and activate python 3.8 -- this is a requirement below
-RUN conda create -n py39 python=3.9
-ENV PATH /opt/conda/envs/py39/bin:$PATH
 
-#RUN conda upgrade -y -n base conda 
-RUN conda update -n base -c defaults conda
-
-# add conda-forge
-RUN conda config --add channels conda-forge
-# required dependencies
-RUN conda install --name py39 -y pandas jupyter scikit-learn graphviz python-graphviz matplotlib python-memcached pymongo cassandra-driver neo4j-python-driver mysql-connector-python jupyterlab
-
-# note that we do not need to install any nosql system as we just use already
-# made docker containers for the functionality.  Point out to the students that
-# unless they mount data volumes locally, they will lose their data.
-
-# Stuff for Jupyter notebook
-RUN mkdir /notebooks
-## If you want the traditional notebooks instead of Lab ...
-## CMD jupyter-notebook --ip="0.0.0.0" --no-browser --allow-root --notebook-dir=/notebooks
-CMD jupyter lab --ip="0.0.0.0" --no-browser --allow-root --notebook-dir=/notebooks
+# We use mamba (a fast conda installer) which is pre-installed in the base image.
+# It's the recommended way to install packages in this stack.
+# We install from the 'conda-forge' channel, which has all the packages.
+#
+# This single command will install:
+# 1. The python-graphviz library
+# 2. The graphviz system binary (as a dependency of python-graphviz)
+# 3. All the requested database drivers
+RUN mamba install --yes -c conda-forge \
+    'python-graphviz' \
+    'python-memcached' \
+    'pymongo' \
+    'cassandra-driver' \
+    'mysql-connector-python' && \
+    # Clean up the cache to keep the final image smaller
+    mamba clean --all -f -y
