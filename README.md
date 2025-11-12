@@ -1,4 +1,4 @@
-# Data Storage Workshop &ndash; Dr Jean-Paul Ebejer
+# Data Storage Workshop &ndash; Prof. Jean-Paul Ebejer
 
 In this workshop (typically for Data Science and Big-Data sessions) we are going
 to look at storing data in database systems, as opposed to storing them in text 
@@ -212,18 +212,16 @@ You may want to reclaim some space on your Ubuntu installation.  Remove all imag
 and containers in the following way.
 
 ```bash
-docker rm -f $(docker ps -a -q)
-docker rmi -f $(docker images -a -q)
+docker system prune -a
 ```
 
 # Conclusion
 
-**Pull requests (with fixes, even to this guide) will be recieved with 
-appreciation and thanks.**
+**Pull requests (with fixes, even to this guide) will be recieved with appreciation and thanks.**
 
 I hope you enjoy this session!
 
-Dr Jean-Paul Ebejer
+Prof. Jean-Paul Ebejer
 <br />
 
 ![](https://github.com/drmenguin/learnd/blob/master/jp.gif)

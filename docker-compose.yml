@@ -1,0 +1,51 @@
+---
+services:
+    mysql:
+        image: 'mysql/mysql-server'
+        container_name: 'some-mysql'
+        environment:
+            - 'MYSQL_ROOT_HOST=%'
+            - 'MYSQL_ROOT_PASSWORD=my-secret-mysql-pwd'
+        volumes:
+            - './sql/insurance.sql:/docker-entrypoint-initdb.d/insurance.sql'
+    memcache:
+        image: 'memcached'
+        container_name: 'some-memcache'
+        ports:
+            - '21211:11211'
+        init: true
+    mongo:
+        image: 'mongo' # :4.4.6 The version here is required due to the use of AVX instructions on CPU in versions >5.0
+        container_name: 'some-mongo'
+    cassandra:
+        image: 'cassandra'
+        container_name: 'some-cassandra'
+    neo4j:
+        image: 'neo4j'
+        container_name: 'some-neo4j'
+        environment:
+            - 'NEO4J_AUTH=neo4j/my-secret-neo4j-password'
+        ports:
+            - '7474:7474'
+            - '7687:7687'
+    data-storage-workshop:
+        image: 'jpebe/data-storage-workshop'
+        container_name: 'some-data-storage-workshop'
+        depends_on:
+            - 'mysql'
+            - 'memcache'
+            - 'mongo'
+            - 'cassandra'
+            - 'neo4j'
+        environment:
+            - 'JUPYTER_TOKEN=my-secret-jupyterlab-token'
+        ports:
+            - '8888:8888'
+        volumes:
+            - './:/home/jovyan/work'
+        # Keep the container running
+        command: start-notebook.sh --ServerApp.root_dir=/home/jovyan/work
+        init: true
+        tty: true
+        stdin_open: true
+

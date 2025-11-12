@@ -13,6 +13,7 @@ LABEL maintainer="JP <jean.p.ebejer@um.edu.mt>" \
 # - scikit-learn
 # - matplotlib
 
+# RUN mkdir /notebooks
 
 # We use mamba (a fast conda installer) which is pre-installed in the base image.
 # It's the recommended way to install packages in this stack.
@@ -27,6 +28,7 @@ RUN mamba install --yes -c conda-forge \
     'python-memcached' \
     'pymongo' \
     'cassandra-driver' \
+    'neo4j-python-driver' \
     'mysql-connector-python' && \
     # Clean up the cache to keep the final image smaller
     mamba clean --all -f -y
