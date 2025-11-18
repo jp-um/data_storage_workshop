@@ -24,7 +24,7 @@ To start all these services simply:
 docker compose up -d
 ```
 
-This will i) pull all necessary images, ii) start all services, and iii) automatically import the `insurance.sql` data into MySQL (no need to run `docker exec`). `docker compose` is a godsend!
+This will i) pull all necessary images, ii) start all services, and iii) automatically import the `insurance.sql` data into MySQL (no need to run `docker exec`). The `-d` option will detach the terminal from the containers and will stop the logging clutter from flooding you. `docker compose` is a godsend!
 
 ## Access Jupyter Lab
 
