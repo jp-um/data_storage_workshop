@@ -10,7 +10,7 @@ You will need a ton of different software (configuration, etc.) for this worksho
 
 The rest of the workshop (and practical) assumes you have docker installed. This can be achieved readily by following the [instructions](https://docs.docker.com/engine/install/ubuntu/) on the docker website.
 
-Clone this github repository using ```git clone git@github.com:jp-um/data_storage_workshop.git```.  (If you do not have your ssh keys and/or account set up in github you can simply ```git clone https://github.com/jp-um/data_storage_workshop.git``` instead). **You should then run this workshop from the root directory of the repository.**  If `git` is unavailable on your Ubuntu OS, simply ```sudo apt install git```.
+**Clone this github repository using ```git clone git@github.com:jp-um/data_storage_workshop.git```**.  (If you do not have your ssh keys and/or account set up in github you can simply ```git clone https://github.com/jp-um/data_storage_workshop.git``` instead). **You should then run this workshop from the root directory of the repository.**  If `git` is unavailable on your Ubuntu OS, simply ```sudo apt install git```.
 
 # Running the Workshop with Docker Compose
 
@@ -28,7 +28,7 @@ This will i) pull all necessary images, ii) start all services, and iii) automat
 
 ## Access Jupyter Lab
 
-Once all services have started, the tutorial files should be avilable at [http://127.0.0.1:8888/login?token=my-secret-jupyterlab-token](http://127.0.0.1:8888/login?token=my-secret-jupyterlab-token).
+**Once all services have started, the tutorial files should be available at [http://127.0.0.1:8888/login?token=my-secret-jupyterlab-token](http://127.0.0.1:8888/login?token=my-secret-jupyterlab-token).**
 
 ## Stopping the Workshop
 
